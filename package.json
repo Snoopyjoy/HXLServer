@@ -1,0 +1,32 @@
+{
+  "name": "bae-nodejs",
+  "version": "1.0.0",
+  "author": "bae",
+  "description": "The first bae nodejs app!",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bufferhelper": "^0.2.1",
+    "console-stamp": "^0.2.6",
+    "cookie-parser": "^1.4.3",
+    "excel-export": "^0.5.1",
+    "express": "^4.16.2",
+    "log4js": "0.6.9",
+    "method-override": "^2.3.10",
+    "moment": "^2.19.2",
+    "mongodb": "2.0.46",
+    "msgpack5": "^3.6.0",
+    "node-qr-image": "^0.0.1",
+    "nodemailer": "^2.7.2",
+    "nunjucks": "^3.0.1",
+    "performance-now": "^2.1.0",
+    "qr-image": "^3.2.0",
+    "querystring": "^0.2.0",
+    "request": "^2.81.0",
+    "socket.io": "^2.0.3",
+    "swig": "^1.4.2",
+    "thrift": "0.9.1",
+    "url": "^0.11.0"
+  }
+}

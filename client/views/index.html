@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,minimal-ui">
+		<link rel="stylesheet" href="{{setting.RES_CDN_DOMAIN}}css/style.css">
+		<script src="{{setting.RES_CDN_DOMAIN}}js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="{{setting.RES_CDN_DOMAIN}}js/frameworks.js"></script>
+        <script type="text/javascript" src="{{setting.RES_CDN_DOMAIN}}js/common.js"></script>
+        <script type="text/javascript" src="{{setting.RES_CDN_DOMAIN}}js/plugin/popup.js"></script>
+        <script>
+            var API_GATEWAY = '{{setting.API_GATEWAY}}';
+        </script>
+	</head>
+	<body class="gradient-bg-lighter">
+    <!--<img  class="title-logo" src="{{setting.RES_CDN_DOMAIN}}assets/title-logo.png"/>-->
+    <div class="infoinput">
+        <div class="row text-center" >
+            请输入您手机号后5位：
+        </div>
+        <div class="row dark-font">
+            <div class="col-6 infoinput-gray-box">
+                <div class="infoinput-number-text text-center" >
+                    手机号后5位
+                </div>
+                <div class="infoinput-number-input ">
+                    <input type="tel" id="mobile-input" />
+                </div>
+            </div>
+            <div class="col-2">
+                <div id="submit" class="infoinput-gray-box text-center btn" >
+                    确认
+                </div>
+            </div>
+        </div>
+        <!--<div class="infoinput-tip">
+            * 提供个人信息者同意并确认：提供个人信息及授权花旗银行（中国）有限公司；其个人资料
+            仅会被花旗（中国）有限公司用作花旗财富论坛之用。
+        </div>-->
+    </div>
+   <!-- <div class="full-image-footer">
+        <img   src="{{setting.RES_CDN_DOMAIN}}assets/footer.png"/>
+    </div>-->
+		<script>
+			$("#submit").click(function() {
+				var numberText = $("#mobile-input").val();
+				var myreg = /^\d{5}$/;
+
+				if (!myreg.exec(numberText)) {
+					alert('请输入正确的内容');
+				} else {
+                    $setCookie("phoneV",numberText);
+					goPage("menu?id="+numberText);
+				}
+			});
+		</script>
+	</body>
+</html>
