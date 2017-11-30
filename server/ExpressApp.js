@@ -5,14 +5,6 @@ var FS = require("fs");
 var Setting = global.requireModule("setting.js");
 var CODES = global.requireModule("service/ServiceCodes.js");
 var Utils = global.requireModule("utils/Utils.js");
-var SWIG = require("swig");
-// To disable Swig's cache, do the following:
-var SWIG_PARMS = { };
-if (Setting.env === 'dev') {
-    SWIG_PARMS.cache = false;
-}
-SWIG.setDefaults(SWIG_PARMS);
-
 var isRunning = false;
 
 var EXPRESS  = require('express');
@@ -34,13 +26,7 @@ App.use(METHOD_OVERRIDE());
 App.use(COOKIE());
 App.use(EXPRESS.static(PATH.join(global.APP_ROOT, "client/res")));
 
-App.engine('html', SWIG.renderFile);
 
-App.set('view engine', 'html');
-App.set('views', PATH.join(global.APP_ROOT, "client/views"));
-if (Setting.env === 'dev') {
-    App.set('view cache', true);
-}
 
 var ALLOW_DOMAIN_MAP = {};
 
@@ -354,6 +340,31 @@ exports.start = function(port, callBack) {
             }
         });
     }
+
+    var nunjucks = require("nunjucks");
+    var viewPath =  PATH.join(global.APP_ROOT, "client/views");
+    var viewCache = false;
+    if (Setting.env === 'dev') {
+        viewCache = true;
+    }
+    var nunjucksEnv = nunjucks.configure(viewPath, {
+        autoescape: true,
+        express: App,
+        noCache: !viewCache,
+        web: {
+            useCache: viewCache
+        }
+    });
+    nunjucks.$setFilter = function(key, func) {
+        nunjucksEnv.addFilter(key, func);
+    };
+    viewEngine = nunjucks;
+    App.set('view engine', 'html');
+
+    App.set('views', viewPath );
+    App.set('view cache', viewCache);
+
+    require("./utils/ViewEngineFilter").init({ engine:nunjucks });
 
     //init routers
     checkFolder(PATH.join(global.APP_ROOT, "server/router"), doRegisterRouter);

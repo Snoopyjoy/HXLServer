@@ -23,7 +23,6 @@ function startup() {
 
     tasks.push(function(callBack) {
         global.requireModule("ExpressApp.js").start(Setting.port, callBack);
-        global.requireModule('utils/ViewEngineFilter.js').init({});
     });
 
     Utils.runQueueTask(tasks, function() {

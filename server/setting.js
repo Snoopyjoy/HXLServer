@@ -10,12 +10,12 @@ module.exports = {
         name:"BQkKrUKvKFAgKBRPKTHo",
         option: {}
     },
-     site:"http://192.168.0.253/",
+     site:"http://127.0.0.1/",
     cdn:{
-        res:"http://192.168.0.253:18080/"
+        res:"http://127.0.0.1:18080/"
     },
     socket:{
-        link:"http://192.168.0.253:18081/"
+        link:"http://127.0.0.1:18081/"
     }
 
 };
