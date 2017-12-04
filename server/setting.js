@@ -3,7 +3,8 @@ module.exports = {
     env:"dev",
     //host:"localhost",
     port:18080,
-
+    vidSocketPort:8081,
+    streamSocketPort:8082,
     db: {
         host:"mongo.duapp.com",
         port:8908,
